@@ -1,0 +1,20 @@
+cd $SRCS/ed-0.2 &&
+
+mkdir $IULIX/bin &&
+
+cp buf.c buf.c.backup &&
+sed 's/int u/int u, sfd/' buf.c.backup | \
+   sed '/.*\*mktemp.*/d' | \
+   sed 's/.*if (mktemp.*/  sfd = mkstemp(sfn);\
+   if ((sfd == -1) || (sfp = fopen (sfn, "w+")) == NULL)/' > buf.c &&
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+mv $IULIX/usr/bin/ed $IULIX/usr/bin/red $IULIX/bin
+
+cd $IULIX &&
+tar -czf $PKGS/ed-0.2.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

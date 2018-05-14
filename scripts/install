@@ -1,0 +1,129 @@
+#!/bin/sh
+
+
+CDROM=/initrd/mnt
+IULIX=/mnt
+
+clear
+echo ""
+echo "			Installing IuLiX 0.1 ..."
+echo ""
+echo ""
+
+
+echo ""
+echo ""
+echo -n "Enter the disk to be partitioned: "
+read DISK
+echo "Creating partition..."
+/sbin/fdisk $DISK
+
+
+echo ""
+echo ""
+echo -n "Enter the root partition: "
+read ROOT
+echo -n "Enter the swap partition: "
+read SWAP
+
+
+echo ""
+echo ""
+echo "Making ext3 filesystem ... $ROOT"
+echo -n "Do you wanna check for bad blocks?(yes/no): "
+read BOOL
+if [ $BOOL = "yes" ]; then
+    /sbin/mke2fs -c $ROOT
+else
+    /sbin/mke2fs $ROOT
+fi
+/sbin/tune2fs -j $ROOT
+
+
+echo ""
+echo ""
+echo "Making swap ... $SWAP"
+/sbin/mkswap $SWAP
+
+
+echo ""
+echo ""
+echo -n "Mounting root partition... "
+if /bin/mount $ROOT $IULIX -t ext3 ; then
+    echo Partition mounted.
+else
+    echo ERROR mounting partition.
+    exit 1
+fi
+
+
+echo ""
+echo ""
+echo "Creating filesystem directories..."
+cd $CDROM/scripts
+./creating_directories $IULIX
+
+
+echo ""
+echo ""
+echo "Start installing basic distribution..."
+cd $CDROM/pkgs
+for archive in $(ls -1 *.tgz);  do
+    echo Installing $archive ...
+    /bin/tar -xzf $archive -C $IULIX
+done
+
+
+echo ""
+echo ""
+echo "Preparing chroot'ed environment ..."
+cd  $CDROM/scripts
+./mount_proc $IULIX
+./creating_etc_passwd_group $IULIX
+cp create MAKEDEV-1.4 $IULIX/dev
+./creating_devices $IULIX
+
+
+echo ""
+echo ""
+echo "Configuring basic software ..."
+./creating_bash_profile $IULIX
+./creating_etc_hosts $IULIX
+./creating_etc_fstab $IULIX $ROOT $SWAP
+./creating_etc_conf_files $IULIX
+./creating_var_run $IULIX
+./configuring_glibc $IULIX
+./configuring_dynamic_loader $IULIX
+./configuring_sysklogd $IULIX
+./configuring_sysvinit $IULIX
+./configuring_setclock_script $IULIX
+./configuring_localnet_script $IULIX
+./configuring_default_gateway $IULIX
+./creating_network_interface $IULIX
+./make_system_bootable $IULIX $ROOT $DISK
+./release $IULIX
+
+
+
+echo ""
+echo ""
+echo "Finishing setup ..."
+cp setup $IULIX/root
+./final_setup $IULIX
+
+
+
+sleep 1
+clear
+echo ""
+echo ""
+echo ""
+echo "			IuLiX installation sucessfull !!!"
+echo ""
+echo ""
+echo ""
+echo "		    --- press any key to reboot the system ---"
+echo ""
+read dummy
+./rebooting_system $IULIX
+ 

@@ -1,0 +1,14 @@
+cd $SRCS/patch-2.5.4 &&
+
+export CPPFLAGS=-D_GNU_SOURCE &&
+./configure --prefix=$IULIX/usr &&
+unset CPPFLAGS &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/patch-2.5.4.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

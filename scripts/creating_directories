@@ -1,0 +1,28 @@
+cd $1 &&
+mkdir -p bin boot dev/pts etc/opt home lib mnt proc root sbin tmp var opt &&
+for dirname in $1/usr $1/usr/local
+   do
+   mkdir $dirname
+   cd $dirname
+   mkdir bin etc include lib sbin share src
+   ln -s share/man
+   ln -s share/doc
+   ln -s share/info
+   cd $dirname/share
+   mkdir dict doc info locale man nls misc terminfo zoneinfo
+   cd $dirname/share/man
+   mkdir man1 man2 man3 man4 man5 man6 man7 man8
+done &&
+cd $1/var &&
+mkdir -p lock log mail run spool tmp opt cache lib/misc local &&
+cd $1/opt &&
+mkdir bin doc include info lib man &&
+cd $1/usr &&
+ln -s ../var/tmp
+cd $1/mnt
+mkdir floppy disk loop cdrom
+
+
+cd $1 &&
+chmod 0750 root &&
+chmod 1777 tmp var/tmp

@@ -1,0 +1,12 @@
+cd $SRCS/m4-1.4 &&
+
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/m4-1.4.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

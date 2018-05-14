@@ -1,0 +1,31 @@
+#!/bin/sh
+
+echo ""
+echo ""
+echo "Making the system bootable..."
+
+cat > $1/etc/lilo.conf << EOF
+boot=$2
+prompt
+timeout=100
+lba32
+read-only
+vga=normal
+menu-title=" *** IuLiX Distro *** "
+verbose=1
+    
+image=/boot/iulix
+    label=iulix
+    root=$2
+EOF
+
+
+
+echo ""
+echo ""
+echo "Installing lilo in $ROOT..."
+/sbin/lilo -r $1
+echo ""
+echo ""
+echo "Making $2 partition bootable..."
+/sbin/fdisk $3

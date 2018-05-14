@@ -1,0 +1,13 @@
+cd $SRCS/file-3.37 &&
+
+touch aclocal.m4 configure Makefile.in stamp-h.in &&
+./configure --prefix=/usr &&
+make &&
+make DESTDIR=$IULIX install &&
+
+cd $IULIX &&
+tar -czf $PKGS/file-3.37.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

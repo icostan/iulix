@@ -1,0 +1,16 @@
+cd $SRCS/bin86-0.16.2 &&
+
+mkdir $IULIX/usr/ &&
+mkdir $IULIX/usr/bin &&
+mkdir $IULIX/usr/man &&
+mkdir $IULIX/usr/man/man1 &&
+
+make &&
+make PREFIX=$IULIX/usr install &&
+
+cd $IULIX &&
+tar -czf $PKGS/bin86-0.6.2.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

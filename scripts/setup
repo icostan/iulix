@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "Chroot'ed environment:"
+
+/usr/bin/passwd root
+/usr/sbin/pwconv
+
+

@@ -1,0 +1,11 @@
+cd $SRCS/procinfo-18 &&
+
+make LDLIBS=-lncurses &&
+make PREFIX=/$IULIX install &&
+
+cd $IULIX &&
+tar -czf $PKGS/procinfo-18.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

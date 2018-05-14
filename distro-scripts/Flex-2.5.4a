@@ -1,0 +1,22 @@
+cd $SRCS/flex-2.5.4 &&
+
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+
+cat > $IULIX/usr/bin/lex << "EOF"
+#!/bin/sh
+# Begin /usr/bin/lex
+
+exec /usr/bin/flex -l "$@"
+
+# End /usr/bin/lex
+EOF
+chmod 755 $IULIX/usr/bin/lex &&
+
+cd $IULIX &&
+tar -czf $PKGS/flex-2.5.4.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

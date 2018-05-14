@@ -1,0 +1,25 @@
+cd $SRCS/glibc-2.2.5 &&
+
+mkdir $IULIX/dev &&
+mkdir $IULIX/etc &&
+
+mknod -m 0666 $IULIX/dev/null c 1 3 &&
+touch $IULIX/etc/ld.so.conf &&
+cp malloc/Makefile malloc/Makefile.backup &&
+sed 's%\$(PERL)%/usr/bin/perl%' malloc/Makefile.backup > malloc/Makefile &&
+cp login/Makefile login/Makefile.backup &&
+sed 's/root/0/' login/Makefile.backup > login/Makefile &&
+mkdir ../glibc-build &&
+cd ../glibc-build &&
+../glibc-2.2.5/configure --prefix=/usr \
+   --enable-add-ons --libexecdir=/usr/bin &&
+echo "cross-compiling = no" > configparms &&
+make &&
+make install_root=$IULIX install &&
+make install_root=$IULIX localedata/install-locales &&
+
+cd $IULIX &&
+tar -czf $PKGS/glibc-2.2.5.tgz . &&
+rm -r ./* &&
+
+echo Done.

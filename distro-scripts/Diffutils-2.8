@@ -1,0 +1,12 @@
+cd $SRCS/diffutils-2.8 &&
+
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/diffutils-2.8.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

@@ -1,0 +1,21 @@
+cat > $1/root/.bash_profile << "EOF"
+umask 022
+
+PS1='\[\033[0;34m\]\u:\w\$\[\033[0m\] '
+PATH=.:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+PATH=$PATH:/etc/rc.d/init.d
+LS_OPTIONS=' --color=auto'
+
+LC_ALL=POSIX
+export PS1 PATH LS_OPTIONS LC_ALL
+EOF
+
+
+cat > $1/etc/profile << "EOF"
+eval `dircolors -b`
+
+PS1='iulix> '
+PATH=.:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+export PS1 PATH
+EOF

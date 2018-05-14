@@ -1,0 +1,14 @@
+cd $SRCS/bash-2.05a &&
+
+./configure --prefix=$IULIX/usr --with-curses \
+   --bindir=$IULIX/bin &&
+make &&
+make install &&
+cd $IULIX/bin &&
+ln -sf bash sh &&
+
+cd $IULIX &&
+tar -czf $PKGS/bash-2.05a.tgz . &&
+rm -r ./* &&
+
+echo Done.

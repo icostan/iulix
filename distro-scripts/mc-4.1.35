@@ -1,0 +1,12 @@
+cd $SRCS/mc-4.1.35 &&
+
+configure --prefix=/usr
+make &&
+make DESTDIR=$IULIX install &&
+
+cd $IULIX &&
+tar -czf $PKGS/mc-4.1.35.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

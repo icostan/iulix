@@ -1,0 +1,7 @@
+cat > $1/etc/sysconfig/clock << "EOF"
+# Begin /etc/sysconfig/clock
+
+UTC=no
+
+# End /etc/sysconfig/clock
+EOF

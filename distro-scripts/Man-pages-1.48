@@ -1,0 +1,9 @@
+cd $SRCS/man-pages-1.48 &&
+
+make prefix=$IULIX install &&
+
+cd $IULIX &&
+tar -czf $PKGS/man-pages-1.48.tgz . &&
+rm -r ./* &&
+
+echo Done.

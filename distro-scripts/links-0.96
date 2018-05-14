@@ -1,0 +1,12 @@
+cd $SRCS/links-0.96 &&
+
+configure --prefix=$IULIX/usr
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/links-0.96.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

@@ -1,0 +1,30 @@
+cd $SRCS/gcc-2.95.3 && 
+
+mkdir $IULIX/usr &&
+mkdir $IULIX/usr/lib &&
+mkdir $IULIX/usr/bin &&
+mkdir $IULIX/lib &&
+
+patch -Np1 -i ../gcc-2.95.3-2.patch &&
+mkdir ../gcc-build &&
+cd ../gcc-build &&
+../gcc-2.95.3/configure --prefix=/usr --enable-shared \
+   --enable-languages=c,c++ --enable-threads=posix &&
+make bootstrap &&
+make prefix=$IULIX/usr install &&
+
+cd $IULIX/lib &&
+ln -sf ../usr/bin/cpp &&
+cd $IULIX/usr/lib &&
+ln -sf ../bin/cpp &&
+cd $IULIX/usr/bin &&
+ln -sf gcc cc &&
+rmdir $IULIX/usr/*-gnu/include &&
+rmdir $IULIX/usr/*-gnu &&
+
+cd $IULIX &&
+tar -czf $PKGS/gcc-2.95.3.tgz . &&
+rm -r $IULIX/*
+
+echo Done.
+

@@ -1,0 +1,15 @@
+cd $SRCS/psmisc-20.2 &&
+
+./configure --prefix=$IULIX/usr --exec-prefix=$IULIX &&
+make &&
+make install &&
+
+rm $IULIX/usr/man/man1/pidof.1 &&
+
+cd $IULIX &&
+tar -czf $PKGS/psmisc-20.2.tgz . &&
+rm -r ./* &&
+
+echo Done.
+
+

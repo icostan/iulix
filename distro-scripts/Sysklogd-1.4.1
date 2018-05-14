@@ -1,0 +1,18 @@
+cd $SRCS/sysklogd-1.4.1 &&
+
+mkdir $IULIX/usr/ &&
+mkdir $IULIX/usr/sbin &&
+mkdir $IULIX/usr/man &&
+mkdir $IULIX/usr/man/man8 &&
+mkdir $IULIX/usr/man/man5 &&
+
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/syslogd-1.4.1.tgz . &&
+rm -r ./* &&
+
+echo Done.
+
+

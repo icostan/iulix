@@ -1,0 +1,8 @@
+cat > $1/etc/hosts << "EOF"
+# Begin /etc/hosts (network card version)
+
+127.0.0.1 localhost.localdomain localhost
+192.168.1.1 hostname.domain hostname
+
+# End /etc/hosts (network card version)
+EOF

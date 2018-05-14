@@ -1,0 +1,20 @@
+cd $SRCS/groff-1.17.2 &&
+
+mkdir $IULIX/usr &&
+
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+
+cd $IULIX/usr/bin &&
+ln -s soelim zsoelim &&
+ln -s eqn geqn &&
+ln -s tbl gtbl &&
+
+cd $IULIX &&
+tar -czf $PKGS/groff-1.17.2.tgz . &&
+rm -r ./* &&
+
+echo Done.
+
+

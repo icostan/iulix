@@ -1,0 +1,25 @@
+cd $SRCS/gzip-1.2.4a &&
+
+mkdir $IULIX/bin && 
+mkdir $IULIX/usr &&
+mkdir $IULIX/usr/bin &&
+
+./configure --prefix=$IULIX/usr &&
+cp gzexe.in gzexe.in.backup &&
+sed 's%"BINDIR"%/bin%' gzexe.in.backup > gzexe.in &&
+make &&
+make install &&
+cd $IULIX/usr/bin &&
+mv gzip $IULIX/bin &&
+rm gunzip zcat &&
+cd $IULIX/bin &&
+ln -sf gzip gunzip &&
+ln -sf gzip zcat &&
+ln -sf gunzip uncompress &&
+
+cd $IULIX &&
+tar -czf $PKGS/gzip-1.2.4a.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

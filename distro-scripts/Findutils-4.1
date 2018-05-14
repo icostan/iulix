@@ -1,0 +1,12 @@
+cd $SRCS/findutils-4.1 &&
+
+#patch -Np1 -i ../findutils-4.1.patch &&
+./configure --prefix=$IULIX/usr &&
+make localstatedir=/var/lib/misc &&
+make localstatedir=/var/lib/misc libexecdir=/usr/bin install &&
+
+cd $IULIX &&
+tar -czf $PKGS/findutils-4.1.tgz . &&
+rm -r ./* &&
+
+echo Done.

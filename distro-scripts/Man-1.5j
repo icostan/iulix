@@ -1,0 +1,21 @@
+cd man-1.5j &&
+
+#
+# Don't forget to change PREFIX in configure file !!!!!! UGLY TO DO
+#
+mkdir $IULIX/usr &&
+mkdir $IULIX/usr/bin &&
+mkdir $IULIX/usr/sbin &&
+mkdir $IULIX/etc &&
+
+./configure -default &&
+make &&
+make install &&
+mv $IULIX/usr/share/misc/man.conf $IULIX/etc/ &&
+
+cd $IULIX &&
+tar -czf $PKGS/man-1.5j.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

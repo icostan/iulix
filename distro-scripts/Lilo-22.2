@@ -1,0 +1,11 @@
+cd $SRCS/lilo-22.2 &&
+
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/lilo-22.2.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

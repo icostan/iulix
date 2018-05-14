@@ -1,0 +1,14 @@
+cd less-374 &&
+
+./configure --prefix=$IULIX/usr --bindir=$IULIX/bin &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf /tmp/pkgs/less-374.tgz . &&
+cd /tmp &&
+rm -r $IULIX/* &&
+
+echo Done.
+
+

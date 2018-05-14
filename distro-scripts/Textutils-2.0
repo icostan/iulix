@@ -1,0 +1,15 @@
+cd $SRCS/textutils-2.0 &&
+
+mkdir $IULIX/bin &&
+
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+mv $IULIX/usr/bin/cat $IULIX/usr/bin/head $IULIX/bin &&
+
+cd $IULIX &&
+tar -czf $PKGS/textutils-2.0.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

@@ -1,0 +1,26 @@
+cd $SRCS/shadow-4.0.3 &&
+
+mkdir $IULIX/etc &&
+mkdir $IULIX/usr &&
+mkdir $IULIX/usr/lib &&
+
+./configure --prefix=/usr --enable-shared &&
+make &&
+make DESTDIR=$IULIX install &&
+cd etc &&
+cp limits login.access $IULIX/etc &&
+sed 's%/var/spool/mail%/var/mail%' login.defs.linux > $IULIX/etc/login.defs &&
+cd $IULIX/usr/sbin &&
+ln -sf vipw vigr &&
+rm $IULIX/bin/vipw &&
+mv $IULIX/bin/sg $IULIX/usr/bin &&
+cd $IULIX/lib &&
+mv libmisc.*a libshadow.*a $IULIX/usr/lib &&
+cd $IULIX/usr/lib &&
+ln -s ../../lib/libshadow.so &&
+
+cd $IULIX &&
+tar -czf $PKGS/shadow-4.0.3.tgz . &&
+rm -r ./* &&
+
+echo Done.

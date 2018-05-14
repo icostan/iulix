@@ -1,0 +1,22 @@
+cd $SRCS/procps-2.0.7 &&
+
+mkdir $IULIX/bin &&
+mkdir $IULIX/usr &&
+mkdir $IULIX/lib &&
+mkdir $IULIX/usr/bin &&
+mkdir $IULIX/usr/man &&
+mkdir $IULIX/usr/man/man1 &&
+mkdir $IULIX/usr/man/man5 &&
+mkdir $IULIX/usr/man/man8 &&
+mkdir $IULIX/sbin &&
+
+make &&
+make XSCPT='' install &&
+mv $IULIX/usr/bin/kill $IULIX/bin &&
+
+cd $IULIX &&
+tar -czf $PKGS/procps-2.0.7.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

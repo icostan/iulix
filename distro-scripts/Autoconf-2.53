@@ -1,0 +1,12 @@
+cd $SRCS/autoconf-2.53 &&
+
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/autoconf-2.53.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

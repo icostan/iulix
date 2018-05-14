@@ -1,0 +1,14 @@
+cat > $1/etc/sysconfig/network-devices/ifconfig.eth0 << "EOF"
+ONBOOT=no
+IP=172.16.1.1
+NETMASK=255.255.255.0
+BROADCAST=192.168.1.255
+EOF
+
+
+cat > $1/etc/sysconfig/network-devices/ifconfig.eth1 << "EOF"
+ONBOOT=no
+IP=192.168.1.1
+NETMASK=255.255.255.0
+BROADCAST=192.168.1.255
+EOF

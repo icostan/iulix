@@ -1,0 +1,11 @@
+cd $SRCS/net-tools-1.60 &&
+
+make &&
+make update &&
+
+cd $IULIX &&
+tar -czf $PKGS/net-tools.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

@@ -1,0 +1,14 @@
+cd $SRCS/kbd-1.06 &&
+
+#patch -Np1 -i ../kbd-1.06-2.patch &&
+
+./configure &&
+make &&
+make DESTDIR=$IULIX install &&
+
+cd $IULIX &&
+tar -czf $PKGS/kbd-1.06.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

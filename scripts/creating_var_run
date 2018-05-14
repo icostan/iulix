@@ -1,0 +1,2 @@
+touch $1/var/run/utmp $1/var/log/btmp $1/var/log/lastlog $1/var/log/wtmp &&
+chmod 644 $1/var/run/utmp $1/var/log/btmp $1/var/log/lastlog $1/var/log/wtmp

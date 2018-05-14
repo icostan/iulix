@@ -1,0 +1,17 @@
+cd $SRCS/gawk-3.1.0 &&
+
+cp awklib/Makefile.in awklib/Makefile.in.backup &&
+sed -e '/^datadir/s/awk/gawk/' \
+-e '/^libexecdir/s%/awk%%' awklib/Makefile.in.backup \
+   > awklib/Makefile.in &&
+./configure --prefix=$IULIX/usr --libexecdir=$IULIX/usr/bin &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/gawk-3.1.0.tgz . &&
+rm -r $IULIX/*
+
+echo Done.
+
+

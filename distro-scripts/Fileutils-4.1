@@ -1,0 +1,16 @@
+cd $SRCS/fileutils-4.1 &&
+
+mkdir $IULIX/usr/bin && 
+
+./configure --prefix=$IULIX/usr --bindir=$IULIX/bin &&
+make &&
+make install &&
+cd $IULIX/usr/bin &&
+ln -sf ../../bin/install &&
+
+cd $IULIX &&
+tar -czf $PKGS/fileutils.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

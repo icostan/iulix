@@ -1,0 +1,12 @@
+cd $SRCS/grep-2.5 &&
+
+./configure --prefix=$IULIX/usr --bindir=$IULIX/bin &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/grep-2.5.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

@@ -1,0 +1,15 @@
+cd $SRCS/binutils-2.12 &&
+
+mkdir ../binutils-build &&
+cd ../binutils-build &&
+../binutils-2.12/configure --prefix=$IULIX/usr --enable-shared &&
+make tooldir=$IULIX/usr &&
+make tooldir=$IULIX/usr install &&
+make tooldir=$IULIX/usr install-info &&
+
+cd $IULIX &&
+tar -czf $PKGS/binutils-2.12.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

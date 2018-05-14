@@ -1,0 +1,25 @@
+cd $SRCS/sh-utils-2.0 &&
+
+mkdir $IULIX/bin &&
+mkdir $IULIX/usr &&
+mkdir $IULIX/usr/sbin &&
+
+
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+cd $IULIX/usr/bin &&
+mv basename date echo false hostname $IULIX/bin &&
+mv pwd sleep stty su test true uname $IULIX/bin &&
+mv chroot ../sbin
+
+# FHS compliant 
+cd $IULIX/bin &&
+ln -sf test [ &&
+
+cd $IULIX &&
+tar -czf $PKGS/sh-utils-2.0.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

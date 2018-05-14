@@ -1,0 +1,12 @@
+cd $SRCS/nano-1.0.9 &&
+
+configure --prefix=/usr
+make DESTDIR=$IULIX &&
+make DESTDIR=$IULIX install &&
+
+cd $IULIX &&
+tar -czf $PKGS/nano-1.0.9.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

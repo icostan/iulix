@@ -1,0 +1,12 @@
+cd $SRCS/joe-2.9.8-pre1 &&
+
+configure --prefix=/usr
+make DESTDIR=$IULIX &&
+make DESTDIR=$IULIX install &&
+
+cd $IULIX &&
+tar -czf $PKGS/joe-2.9.8-pre1.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

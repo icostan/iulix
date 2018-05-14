@@ -1,0 +1,11 @@
+cd $SRCS/iptables-1.2.6 &&
+
+make DESTDIR=$IULIX PREFIX=/usr &&
+make DESTDIR=$IULIX PREFIX=/usr install &&
+
+cd $IULIX &&
+tar -czf $PKGS/iptables-1.2.6.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

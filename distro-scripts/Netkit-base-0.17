@@ -1,0 +1,21 @@
+cd $SRCS/netkit-base-0.17 &&
+
+mkdir $IULIX/etc/ &&
+mkdir $IULIX/usr/ &&
+mkdir $IULIX/usr/bin &&
+mkdir $IULIX/usr/sbin &&
+mkdir $IULIX/usr/man &&
+mkdir $IULIX/usr/man/man8 &&
+
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+cd etc.sample &&
+cp services protocols $IULIX/etc &&
+
+cd $IULIX &&
+tar -czf $PKGS/netki-base-0.17.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

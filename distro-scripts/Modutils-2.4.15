@@ -1,0 +1,12 @@
+cd $SRCS/modutils-2.4.15 &&
+
+./configure --prefix=$IULIX/usr --exec-prefix=$IULIX &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/modutils-2.4.15.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

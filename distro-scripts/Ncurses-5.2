@@ -1,0 +1,25 @@
+cd $SRCS/ncurses-5.2 &&
+
+./configure --prefix=/usr --libdir=/lib \
+   --with-shared --disable-termcap &&
+make &&
+make DESTDIR=$IULIX install &&
+
+cd $IULIX/lib &&
+mkdir $IULIX/usr/lib &&
+mv *.a $IULIX/usr/lib &&
+chmod 755 *.5.2 &&
+cd $IULIX/usr/lib &&
+ln -sf libncurses.a libcurses.a &&
+ln -sf ../../lib/libncurses.so &&
+ln -sf ../../lib/libcurses.so &&
+ln -sf ../../lib/libform.so &&
+ln -sf ../../lib/libpanel.so &&
+ln -sf ../../lib/libmenu.so &&
+
+cd $IULIX &&
+tar -czf $PKGS/ncurses-5.2.tgz . &&
+rm -r $IULIX/* &&
+
+echo Done.
+

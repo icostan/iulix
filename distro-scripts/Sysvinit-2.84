@@ -1,0 +1,28 @@
+cd $SRCS/sysvinit-2.84 &&
+
+mkdir $IULIX/bin &&
+mkdir $IULIX/sbin &&
+mkdir $IULIX/usr &&
+mkdir $IULIX/usr/include &&
+mkdir $IULIX/usr/bin &&
+mkdir $IULIX/usr/sbin &&
+mkdir $IULIX/usr/share &&
+mkdir $IULIX/usr/share/man &&
+mkdir $IULIX/usr/share/man/man8 &&
+mkdir $IULIX/usr/share/man/man5 &&
+mkdir $IULIX/usr/share/man/man1 &&
+
+cp src/init.c src/init.c.backup &&
+sed 's/\(.*\)\(Sending processes\)\(.*\)/\1\2 started by init\3/' \
+   src/init.c.backup > src/init.c
+
+
+make -C src &&
+make -C src install ROOT=$IULIX &&
+
+cd $IULIX &&
+tar -czf $PKGS/sysvinit-2.84.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

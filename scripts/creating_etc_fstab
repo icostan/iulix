@@ -1,0 +1,11 @@
+cat > $1/etc/fstab << EOF
+# Begin /etc/fstab
+
+# filesystem   mount-point 	fs-type		options	  dump   fsck-order
+
+$2	/		ext3		defaults    1       1
+$3	swap        	swap		pri=1       0       0
+proc           	/proc       	proc		defaults    0       0
+
+# End /etc/fstab
+EOF

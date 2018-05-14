@@ -1,0 +1,12 @@
+cd $SRCS/libtool-1.4.2 &&
+
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/libtool-1.4.2.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

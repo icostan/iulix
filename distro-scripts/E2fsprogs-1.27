@@ -1,0 +1,17 @@
+cd $SRCS/e2fsprogs-1.27 &&
+
+mkdir ../e2fsprogs-build &&
+cd ../e2fsprogs-build &&
+../e2fsprogs-1.27/configure --prefix=/usr --with-root-prefix="" \
+    --enable-elf-shlibs &&
+make &&
+make distribution_tar_file &&
+#make install &&
+#make install-libs &&
+
+#cd $IULIX &&
+#tar -czf $PKGS/e2fsprogs-1.27.tgz . &&
+#rm -r ./* &&
+
+echo Done.
+

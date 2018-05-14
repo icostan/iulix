@@ -1,0 +1,11 @@
+cd $SRCS/automake-1.6 &&
+
+./configure --prefix=$IULIX/usr &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/automake-1.6.tgz . &&
+#rm -r ./* &&
+
+echo Done.
+

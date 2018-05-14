@@ -1,0 +1,19 @@
+cd $SRCS/netkit-ftp-0.17 &&
+
+mkdir $IULIX/usr &&
+mkdir $IULIX/usr/bin &&
+mkdir $IULIX/usr/man &&
+mkdir $IULIX/usr/man/man1 &&
+mkdir $IULIX/usr/man/man5 &&
+
+
+configure --installroot=$IULIX
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/netkit-ftp-0.17.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

@@ -1,0 +1,15 @@
+cd $SRCS/tar-1.13 &&
+
+patch -Np1 -i ../tar-1.13.patch
+
+./configure --prefix=$IULIX/usr --libexecdir=$IULIX/usr/bin \
+   --bindir=$IULIX/bin &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/tar-1.13.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

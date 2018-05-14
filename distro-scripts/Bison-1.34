@@ -1,0 +1,22 @@
+cd bison-1.34 &&
+
+./configure --prefix=$IULIX/usr &&
+make &&
+make install &&
+
+cat > $IULIX/usr/bin/yacc << "EOF"
+#!/bin/sh
+# Begin /usr/bin/yacc
+
+exec /usr/bin/bison -y "$@"
+
+# End /usr/bin/yacc
+EOF
+chmod 755 $IULIX/usr/bin/yacc &&
+
+cd $IULIX &&
+tar -czf /tmp/pkgs/bison-1.34.tgz . &&
+cd /tmp &&
+rm -r $IULIX/* &&
+
+echo Done.

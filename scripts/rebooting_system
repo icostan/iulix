@@ -1,0 +1,6 @@
+umount $1/proc
+umount $1
+
+reboot -r now
+
+

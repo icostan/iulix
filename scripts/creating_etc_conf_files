@@ -1,0 +1,30 @@
+#
+# Creating modules.conf
+# 
+cat > $1/etc/modules.conf << "EOF"
+alias eth0 8139too
+alias eth1 ne2k-pci
+EOF
+
+
+#
+# Creating resolv.conf
+#
+cat > $1/etc/resolv.conf << "EOF"
+domain iulix.org
+nameserver 127.0.0.1
+EOF
+
+
+#
+# Creating host.conf
+#
+cat > $1/etc/host.conf << "EOF"
+order hosts,bind
+multi on
+EOF
+
+
+
+
+

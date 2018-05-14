@@ -1,0 +1,18 @@
+cd $SRCS/util-linux-2.11o &&
+
+cp hwclock/hwclock.c hwclock/hwclock.c.backup &&
+sed 's%etc/adjtime%var/lib/hwclock/adjtime%' \
+   hwclock/hwclock.c.backup > hwclock/hwclock.c &&
+mkdir -p $IULIX/var/lib/hwclock
+
+
+./configure --prefix=$IULIX &&
+make HAVE_SLN=yes &&
+make HAVE_SLN=yes install &&
+
+cd $IULIX &&
+tar -czf $PKGS/util-linux-2.11o.tgz . &&
+rm -r ./* &&
+
+echo Done.
+

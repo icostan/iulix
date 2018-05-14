@@ -1,0 +1,13 @@
+cd $SRCS/sed-3.02 &&
+
+./configure --prefix=$IULIX/usr --bindir=$IULIX/bin &&
+make &&
+make install &&
+
+cd $IULIX &&
+tar -czf $PKGS/sed-3.02.tgz . &&
+rm -r ./* &&
+
+echo Done.
+
+
